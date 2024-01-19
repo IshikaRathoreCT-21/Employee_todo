@@ -11,4 +11,6 @@ public interface EmployeeService {
     public void deleteEmployee(Integer id);
     public void updateEmployee(Integer id, EmployeeDto emp);
     public List<Employee> searchByFirstName(String str);
+    public boolean idExists(int id);
+
 }

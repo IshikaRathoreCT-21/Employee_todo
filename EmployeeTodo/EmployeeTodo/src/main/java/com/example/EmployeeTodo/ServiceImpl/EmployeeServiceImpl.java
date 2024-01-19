@@ -39,7 +39,7 @@ private EmployeeRepository EmpRepo;
         return EmpRepo.save(employee);
     }
     public void deleteEmployee(Integer id) {
-       EmpRepo.deleteById(id);
+        EmpRepo.deleteById(id);
     }
 
     public void updateEmployee(Integer id, EmployeeDto employee)
@@ -51,8 +51,12 @@ private EmployeeRepository EmpRepo;
     public List<Employee> searchByFirstName(String str){
         return (List<Employee>) this.EmpRepo.findByfirstName(str);
     }
-    public Employee findById(int id){
-        return this.EmpRepo.findById(id);
+
+//    public Employee findById(int id){
+//        return this.EmpRepo.findById(id);
+//    }
+    public boolean idExists(int id){
+        return this.EmpRepo.existsById(id);
     }
 
 

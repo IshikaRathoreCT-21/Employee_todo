@@ -13,6 +13,7 @@ public class EmployeeResponse implements RestResponse {
     public int status;
     public String message;
     private List<Employee> employee;
+    private Object data;
 
 
     public EmployeeResponse() {
@@ -27,5 +28,11 @@ public class EmployeeResponse implements RestResponse {
         this.status = status;
         this.message = message;
         this.employee = employee;
+    }
+
+    public EmployeeResponse(int status, String message, Object data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
     }
 }

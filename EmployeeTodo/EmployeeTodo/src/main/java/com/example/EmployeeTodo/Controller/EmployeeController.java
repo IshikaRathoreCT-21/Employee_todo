@@ -37,8 +37,7 @@ public class  EmployeeController {
                     errorMessage.add(fieldError.getDefaultMessage());
                 }
             }
-
-            return new EmployeeResponse(StatusCode.BAD_REQUEST, ConstantMessage.BAD_REQUEST);
+            return new EmployeeResponse(StatusCode.BAD_REQUEST, ConstantMessage.BAD_REQUEST, errorMessage);
 
         } else {
 
@@ -48,15 +47,23 @@ public class  EmployeeController {
     }
     @DeleteMapping("/deleteEmployee/{id}")
     public EmployeeResponse deleteEmp(@PathVariable("id") int empId) {
-           this.EmpService.deleteEmployee(empId);
+        if(EmpService.idExists(empId)) {
+            this.EmpService.deleteEmployee(empId);
             return new EmployeeResponse(StatusCode.SUCCESS, ConstantMessage.SUCCESSFUL_DELETION);
+        }else{
+            return new EmployeeResponse(StatusCode.NOT_FOUND,ConstantMessage.NOT_FOUND);
         }
+    }
 
     @PutMapping("/updateEmployee/{empID}")
         public EmployeeResponse updateEmp(@PathVariable("empID") int empID,@RequestBody @Valid EmployeeDto employee){
+        if(EmpService.idExists(empID)) {
             this.EmpService.updateEmployee(empID, employee);
             return new EmployeeResponse(StatusCode.SUCCESS, ConstantMessage.SUCCESSFUL_APPLICATION);
+        }else{
+            return new EmployeeResponse(StatusCode.NOT_FOUND, ConstantMessage.NOT_FOUND);
         }
+    }
 
         @GetMapping("/getByFirstName/{searchText}")
         public EmployeeResponse searchEmp(@PathVariable("searchText") String string){

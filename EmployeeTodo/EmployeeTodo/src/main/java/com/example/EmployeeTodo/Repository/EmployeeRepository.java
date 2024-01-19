@@ -12,5 +12,6 @@ import java.util.List;
 public interface EmployeeRepository extends CrudRepository<Employee,Integer>{
 List<Employee> findByfirstName(String str);
 public Employee findById(int id);
+boolean existsById(int id);
 
 }

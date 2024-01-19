@@ -14,7 +14,7 @@ public class EmployeeDto {
 
 
     private int Id;
-    @NotNull
+    @NotNull(message = "")
     private String firstName;
    // @NotBlank(message = "lastName can not be empty")
     private String lastName;
